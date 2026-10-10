@@ -16,8 +16,21 @@ def test_artifact_round_trip_preserves_predictions(motor_frame):
     path.parent.mkdir(parents=True, exist_ok=True)
 
     try:
+        summary = {
+            name: {
+                "minimum": float(motor_frame[name].min()),
+                "median": float(motor_frame[name].median()),
+                "maximum": float(motor_frame[name].max()),
+            }
+            for name in motor_frame.columns
+            if name not in {"pm", "profile_id"}
+        }
         save_artifact(
-            model, path, {"mae_celsius": 1.0}, include_stator=True
+            model,
+            path,
+            {"mae_celsius": 1.0},
+            include_stator=True,
+            input_summary=summary,
         )
         artifact = load_artifact(path)
 

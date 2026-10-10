@@ -39,4 +39,4 @@ The artifact is generated locally and excluded from Git. Run `python scripts/tra
 - The estimator uses concurrent stator temperatures and does not model the motor's thermal history.
 - Errors differ by operating profile, especially during some driving cycles.
 - Permutation importance describes predictive dependence, not physical causality.
-- Inputs outside the training ranges are not validated yet.
+- The application rejects individual values outside the observed training ranges. It does not detect unusual combinations of values that are individually in range.

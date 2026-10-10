@@ -23,6 +23,8 @@ flowchart TD
 - `modeling.py` builds model candidates, features, and regression metrics.
 - `evaluation.py` calculates residual, profile, and permutation diagnostics.
 - `artifact.py` saves, validates, and runs the inference artifact.
+- `app_logic.py` validates interface values against the artifact contract.
+- `app.py` provides the Streamlit prediction interface.
 - `config.py` will hold shared paths, column names, and the random seed.
 
 Modules will be introduced with the feature that needs them. Empty placeholder modules are not part of the initial repository.

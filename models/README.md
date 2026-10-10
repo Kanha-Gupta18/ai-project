@@ -1,3 +1,11 @@
-# Model artifacts
+# Model artifact
 
-Training will place the selected serialized pipeline and its metadata in this directory. Generated binary files are ignored until their size and reproducibility policy is confirmed.
+Run the training workflow to create:
+
+```text
+models/thermalguard_model.joblib
+```
+
+The artifact contains the selected estimator, ordered feature contract, observed input ranges, median interface defaults, target name, artifact version, and final test metrics. The model file is generated locally and excluded from Git.
+
+The Streamlit application validates the artifact before prediction. An incompatible version, missing feature contract, or missing input summary stops the application with an error instead of producing a prediction.

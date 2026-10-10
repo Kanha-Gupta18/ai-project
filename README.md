@@ -55,6 +55,14 @@ python scripts/analyze_dataset.py
 python scripts/train_models.py
 ```
 
+Launch the prediction application after training:
+
+```powershell
+python -m streamlit run app.py
+```
+
+The application reads the saved model artifact and does not load the full dataset. Its input controls use the training ranges stored in the artifact.
+
 ## Documentation
 
 - [Project plan](docs/PROJECT_PLAN.md)

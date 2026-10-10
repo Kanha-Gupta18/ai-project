@@ -20,6 +20,7 @@ def save_artifact(
     metrics: dict[str, float],
     *,
     include_stator: bool,
+    input_summary: dict[str, dict[str, float]],
 ) -> None:
     """Save the fitted model together with its inference contract."""
 
@@ -34,6 +35,7 @@ def save_artifact(
             "include_stator": include_stator,
             "target": "pm",
             "test_metrics": metrics,
+            "input_summary": input_summary,
         },
         destination,
     )
@@ -48,6 +50,8 @@ def load_artifact(path: str | Path) -> dict[str, Any]:
     expected_features = MODEL_FEATURES if artifact.get("include_stator") else CONTROLLER_FEATURES
     if artifact.get("feature_names") != list(expected_features):
         raise ValueError("The model artifact feature contract is incompatible.")
+    if not artifact.get("input_summary"):
+        raise ValueError("The model artifact does not contain input ranges.")
     return artifact
 
 

@@ -7,7 +7,7 @@ import time
 from pathlib import Path
 
 from thermalguard.artifact import save_artifact
-from thermalguard.config import DEFAULT_DATA_PATH, GROUP_COLUMN
+from thermalguard.config import DEFAULT_DATA_PATH, GROUP_COLUMN, RAW_MODEL_INPUTS
 from thermalguard.data import load_dataset, split_by_profile
 from thermalguard.evaluation import (
     prediction_table,
@@ -92,11 +92,20 @@ def main() -> None:
     MODEL_DIR.mkdir(parents=True, exist_ok=True)
     METRIC_DIR.mkdir(parents=True, exist_ok=True)
     TABLE_DIR.mkdir(parents=True, exist_ok=True)
+    input_summary = {
+        name: {
+            "minimum": float(development[name].min()),
+            "median": float(development[name].median()),
+            "maximum": float(development[name].max()),
+        }
+        for name in RAW_MODEL_INPUTS
+    }
     save_artifact(
         selected,
         MODEL_DIR / "thermalguard_model.joblib",
         test_metrics,
         include_stator=selected_include_stator,
+        input_summary=input_summary,
     )
     (METRIC_DIR / "model_comparison.json").write_text(
         json.dumps(results, indent=2), encoding="utf-8"
