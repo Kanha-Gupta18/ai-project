@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Environments and secrets
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# Notebooks and editors
+.ipynb_checkpoints/
+.idea/
+.vscode/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Local data and generated artifacts
+data/raw/
+data/processed/
+models/*.joblib
+models/*.pkl
+reports/figures/*.png
+reports/tables/*.csv
+reports/metrics/*.json
+
+# Workspace-only planning and scratch files
+outputs/
+work/
