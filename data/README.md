@@ -29,6 +29,18 @@ The first implementation will validate these columns:
 
 The dataset also contains stator temperature measurements. They will be examined during analysis but will not be used as predictors in the main rotor-temperature model unless the project plan is revised with a clear engineering reason.
 
+Each row is a measurement sampled at 2 Hz. Separate test sessions are identified by `profile_id`, which ThermalGuard uses to keep entire sessions together during train and test splitting.
+
+## Validation
+
+After adding the file, run:
+
+```powershell
+python -m pytest
+```
+
+The data loader checks the required schema, numeric types, missing and infinite values, and the availability of multiple measurement profiles before training begins.
+
 ## Licence and citation
 
 The Kaggle dataset page lists a CC BY-SA 4.0 licence. Any redistributed sample or derivative must follow that licence. The final report and README will cite the dataset and the associated work on permanent-magnet synchronous motor temperature estimation.
