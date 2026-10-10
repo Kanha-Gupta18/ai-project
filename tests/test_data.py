@@ -45,3 +45,17 @@ def test_split_by_profile_is_reproducible(motor_frame):
     assert first_train.index.tolist() == second_train.index.tolist()
     assert first_test.index.tolist() == second_test.index.tolist()
 
+
+def test_real_dataset_schema_when_available():
+    from pathlib import Path
+
+    from thermalguard.data import load_dataset
+
+    path = Path("data/raw/measures_v2.csv")
+    if not path.exists():
+        pytest.skip("Real dataset is not available in this checkout.")
+
+    frame = load_dataset(path)
+    assert len(frame) == 1_330_816
+    assert frame["profile_id"].nunique() == 69
+

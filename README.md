@@ -31,9 +31,9 @@ flowchart LR
 
 Operating sessions are separated by `profile_id`. Complete profiles will be held out during evaluation so that neighbouring measurements from one session cannot appear in both training and test data.
 
-## Repository status
+## Current results
 
-The repository foundation is in place. Data processing, modelling, evaluation, and the Streamlit application will be added as verified milestones.
+The first benchmark uses complete held-out measurement profiles rather than a random row split. Enhanced Ridge is currently the strongest model, with 4.96°C MAE, 6.41°C RMSE, and R² of 0.890 on unseen operating sessions. See [the experiment results](reports/RESULTS.md) for the full comparison and sensor ablation.
 
 ## Local setup
 
@@ -46,7 +46,14 @@ python -m pip install --upgrade pip
 python -m pip install -e ".[dev]"
 ```
 
-The commands for validation, training, evaluation, testing, and running the application will be added when those entry points exist.
+Validate the repository and reproduce the current analysis:
+
+```powershell
+python -m pytest
+$env:PYTHONPATH = "src"
+python scripts/analyze_dataset.py
+python scripts/train_models.py
+```
 
 ## Documentation
 

@@ -36,6 +36,3 @@ reports/metrics/*.json
 # Workspace-only planning and scratch files
 outputs/
 work/
-# Raw and generated data
-data/raw/
-data/processed/

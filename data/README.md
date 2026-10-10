@@ -12,6 +12,8 @@ Dataset page: <https://www.kaggle.com/datasets/wkirgsn/electric-motor-temperatur
 
 The raw file is roughly 300 MB and is excluded from Git. Do not commit Kaggle credentials or API tokens.
 
+The archive used for the documented benchmark had SHA-256 checksum `10E49E6220FA3C8A9D22C8BAB8280FFE2D5E1E3380A6A18BCFC64EA2E8B56B92`.
+
 ## Expected columns
 
 The first implementation will validate these columns:
@@ -27,7 +29,7 @@ The first implementation will validate these columns:
 - `i_q`
 - `pm`
 
-The dataset also contains stator temperature measurements. They will be examined during analysis but will not be used as predictors in the main rotor-temperature model unless the project plan is revised with a clear engineering reason.
+The dataset also contains stator temperature measurements from thermocouples. The enhanced model uses these readings because stator temperatures are easier to instrument than rotor temperature and carry useful information about the motor's thermal state. A controller-signal-only baseline is retained for comparison.
 
 Each row is a measurement sampled at 2 Hz. Separate test sessions are identified by `profile_id`, which ThermalGuard uses to keep entire sessions together during train and test splitting.
 

@@ -14,8 +14,8 @@ The units and exact representation will be confirmed against the downloaded `mea
 | `i_d` | Input | Direct-axis current component |
 | `i_q` | Input | Quadrature-axis current component |
 | `pm` | Target | Permanent-magnet rotor temperature |
-| `stator_yoke` | Analysis only | Stator-yoke temperature |
-| `stator_tooth` | Analysis only | Stator-tooth temperature |
-| `stator_winding` | Analysis only | Stator-winding temperature |
+| `stator_yoke` | Input | Stator-yoke temperature measured by thermocouple |
+| `stator_tooth` | Input | Stator-tooth temperature measured by thermocouple |
+| `stator_winding` | Input | Stator-winding temperature measured by thermocouple |
 
-Candidate derived features are current magnitude, voltage magnitude, and the difference between coolant and ambient temperature. They will be retained only if group-aware validation or interpretation supports them.
+Derived features are current magnitude, voltage magnitude, and the difference between coolant and ambient temperature. The controller-signal-only feature set is retained as an ablation so the value of the stator sensors can be measured rather than assumed.

@@ -20,12 +20,10 @@ dependencies = [
   "scikit-learn>=1.5,<2",
   "seaborn>=0.13,<1",
   "streamlit>=1.40,<2",
+  "xgboost>=2.1,<4",
 ]
 
 [project.optional-dependencies]
-boosting = [
-  "xgboost>=2.1,<4",
-]
 explain = [
   "shap>=0.46,<1",
 ]
@@ -39,7 +37,7 @@ dev = [
   "ruff>=0.8,<1",
 ]
 all = [
-  "thermalguard-motor-temperature[boosting,explain,notebook,dev]",
+  "thermalguard-motor-temperature[explain,notebook,dev]",
 ]
 
 [tool.setuptools.packages.find]
@@ -47,7 +45,7 @@ where = ["src"]
 
 [tool.pytest.ini_options]
 addopts = "-ra"
-pythonpath = ["src"]
+pythonpath = ["src", "."]
 testpaths = ["tests"]
 
 [tool.ruff]

@@ -22,6 +22,9 @@ def motor_frame() -> pd.DataFrame:
                     "i_d": -30.0 - step,
                     "i_q": 15.0 + step,
                     "pm": 45.0 + profile_id + step,
+                    "stator_yoke": 35.0 + profile_id + step,
+                    "stator_tooth": 40.0 + profile_id + step,
+                    "stator_winding": 42.0 + profile_id + step,
                     "profile_id": profile_id,
                 }
             )

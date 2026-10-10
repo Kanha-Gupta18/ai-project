@@ -17,12 +17,12 @@ RAW_FEATURES = (
     "i_q",
 )
 
-ANALYSIS_ONLY_COLUMNS = (
+STATOR_FEATURES = (
     "stator_yoke",
     "stator_tooth",
     "stator_winding",
 )
 
-REQUIRED_COLUMNS = (*RAW_FEATURES, TARGET_COLUMN, GROUP_COLUMN)
+REQUIRED_COLUMNS = (*RAW_FEATURES, *STATOR_FEATURES, TARGET_COLUMN, GROUP_COLUMN)
 DEFAULT_DATA_PATH = Path("data/raw/measures_v2.csv")
 
