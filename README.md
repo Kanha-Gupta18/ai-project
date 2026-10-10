@@ -33,7 +33,7 @@ Operating sessions are separated by `profile_id`. Complete profiles will be held
 
 ## Current results
 
-The first benchmark uses complete held-out measurement profiles rather than a random row split. Enhanced Ridge is currently the strongest model, with 4.96°C MAE, 6.41°C RMSE, and R² of 0.890 on unseen operating sessions. See [the experiment results](reports/RESULTS.md) for the full comparison and sensor ablation.
+The benchmark uses separate training, validation, and final test profiles rather than a random row split. Enhanced Histogram Gradient Boosting is the selected model. On 14 untouched test profiles it reaches 5.60°C MAE, 7.36°C RMSE, and R² of 0.856. See [the experiment results](reports/RESULTS.md) for the comparison, sensor ablation, and error analysis.
 
 ## Local setup
 
@@ -61,6 +61,7 @@ python scripts/train_models.py
 - [Architecture](docs/ARCHITECTURE.md)
 - [Data dictionary](docs/DATA_DICTIONARY.md)
 - [Workflow diagram](docs/FLOW_DIAGRAM.md)
+- [Model card](docs/MODEL_CARD.md)
 
 ## Licence and data attribution
 

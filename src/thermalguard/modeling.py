@@ -28,14 +28,20 @@ CONTROLLER_FEATURES = (*RAW_FEATURES, *ENGINEERED_FEATURES)
 MODEL_FEATURES = (*RAW_FEATURES, *STATOR_FEATURES, *ENGINEERED_FEATURES)
 
 
-def prepare_xy(
-    frame: pd.DataFrame, *, include_stator: bool = True
-) -> tuple[pd.DataFrame, pd.Series]:
-    """Create the deployable feature matrix and rotor-temperature target."""
+def prepare_features(frame: pd.DataFrame, *, include_stator: bool = True) -> pd.DataFrame:
+    """Create a model-ready feature matrix in the trained column order."""
 
     enriched = add_engineered_features(frame)
     features = MODEL_FEATURES if include_stator else CONTROLLER_FEATURES
-    return enriched.loc[:, features], enriched[TARGET_COLUMN]
+    return enriched.loc[:, features]
+
+
+def prepare_xy(
+    frame: pd.DataFrame, *, include_stator: bool = True
+) -> tuple[pd.DataFrame, pd.Series]:
+    """Create the feature matrix and rotor-temperature target."""
+
+    return prepare_features(frame, include_stator=include_stator), frame[TARGET_COLUMN]
 
 
 def build_candidate_models() -> Mapping[str, RegressorMixin]:

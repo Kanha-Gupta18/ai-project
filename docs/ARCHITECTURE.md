@@ -5,10 +5,10 @@ ThermalGuard separates reusable project code from the analysis notebook and the 
 ```mermaid
 flowchart TD
     A[data/raw/measures_v2.csv] --> B[Data validation]
-    B --> C[Profile-aware development and test split]
+    B --> C[Profile-aware train, validation, and test split]
     C --> D[Feature and model pipeline]
-    D --> E[Group-aware cross-validation]
-    E --> F[Model selection]
+    D --> E[Validation comparison]
+    E --> F[Model selection and development refit]
     F --> G[Untouched test evaluation]
     G --> H[Saved pipeline]
     G --> I[Generated metrics, tables, and figures]
@@ -20,9 +20,9 @@ flowchart TD
 
 - `data.py` will load, validate, and split the dataset.
 - `features.py` will define the approved raw and derived features.
-- `train.py` will build and compare model pipelines.
-- `evaluate.py` will calculate metrics and create diagnostic artifacts.
-- `predict.py` will provide the inference function used by the application.
+- `modeling.py` builds model candidates, features, and regression metrics.
+- `evaluation.py` calculates residual, profile, and permutation diagnostics.
+- `artifact.py` saves, validates, and runs the inference artifact.
 - `config.py` will hold shared paths, column names, and the random seed.
 
 Modules will be introduced with the feature that needs them. Empty placeholder modules are not part of the initial repository.
@@ -31,6 +31,6 @@ Modules will be introduced with the feature that needs them. Empty placeholder m
 
 - `profile_id` is a grouping field, not a model input.
 - Complete profiles are reserved for the test set.
-- Preprocessing is fitted within each training fold.
-- The final test set is not used for model selection.
+- Preprocessing is fitted using training data only during selection.
+- Validation profiles select the model. The final test set is not used for selection.
 - The application loads the same serialized pipeline used during evaluation.

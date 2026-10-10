@@ -1,6 +1,10 @@
-# Baseline experiment results
+# Experiment results
 
-These results were produced from all 1,330,816 measurements in `measures_v2.csv`. Complete operating profiles were assigned to either training or testing with `GroupShuffleSplit`, using a fixed random seed of 42. The resulting test set contains profiles that none of the models saw during training.
+## Evaluation design
+
+All partitions are separated by `profile_id`, so one operating session cannot appear in more than one partition. The 69 profiles are divided into 44 training profiles, 11 validation profiles, and 14 final test profiles.
+
+The training set fits each candidate. Validation MAE selects the model and feature set. The selected model is then refitted on the combined 55-profile development set and evaluated once on the untouched test profiles.
 
 ## Dataset checks
 
@@ -10,26 +14,48 @@ These results were produced from all 1,330,816 measurements in `measures_v2.csv`
 - Rotor temperature range: 20.86°C to 113.61°C
 - Median profile length: 17,142 measurements
 
-## Model comparison
+## Validation comparison
 
-| Feature set | Model | MAE (°C) | RMSE (°C) | R² | Within ±5°C | Fit time |
-|---|---|---:|---:|---:|---:|---:|
-| Controller signals | Mean baseline | 16.43 | 19.42 | -0.005 | 16.6% | 0.02 s |
-| Controller signals | Ridge | 8.63 | 11.17 | 0.668 | 37.6% | 0.34 s |
-| Controller signals | Histogram gradient boosting | 9.33 | 11.97 | 0.618 | 36.1% | 7.93 s |
-| Controller signals | XGBoost | 9.76 | 12.62 | 0.576 | 35.0% | 18.73 s |
-| Enhanced sensors | Mean baseline | 16.43 | 19.42 | -0.005 | 16.6% | 0.01 s |
-| Enhanced sensors | **Ridge** | **4.96** | **6.41** | **0.890** | **61.0%** | **0.38 s** |
-| Enhanced sensors | Histogram gradient boosting | 5.60 | 7.36 | 0.856 | 54.4% | 6.77 s |
-| Enhanced sensors | XGBoost | 5.93 | 7.90 | 0.834 | 53.9% | 20.07 s |
+| Feature set | Model | MAE (°C) | RMSE (°C) | R² | Within ±5°C |
+|---|---|---:|---:|---:|---:|
+| Controller signals | Mean baseline | 15.68 | 19.19 | -0.013 | 19.9% |
+| Controller signals | Ridge | 10.46 | 13.03 | 0.533 | 28.7% |
+| Controller signals | Histogram gradient boosting | 7.75 | 9.95 | 0.727 | 39.7% |
+| Controller signals | XGBoost | 8.11 | 10.57 | 0.692 | 39.5% |
+| Enhanced sensors | Mean baseline | 15.68 | 19.19 | -0.013 | 19.9% |
+| Enhanced sensors | Ridge | 5.85 | 7.10 | 0.861 | 46.6% |
+| Enhanced sensors | **Histogram gradient boosting** | **4.61** | **6.11** | **0.897** | **65.0%** |
+| Enhanced sensors | XGBoost | 4.81 | 6.42 | 0.887 | 65.2% |
 
-The controller feature set uses ambient and coolant temperature, motor speed, torque, d-q voltage, d-q current, and three derived features. The enhanced set adds stator-yoke, stator-tooth, and stator-winding thermocouple readings.
+The controller set contains ambient and coolant temperatures, speed, torque, d-q voltage, d-q current, and three derived features. The enhanced set adds the stator-yoke, stator-tooth, and stator-winding thermocouple readings.
 
-## Decision
+## Final test results
 
-Enhanced Ridge is the selected baseline. It produced the lowest error on unseen operating sessions, trained in under one second, and is easier to explain than either tree ensemble. Adding stator temperatures reduced MAE by 3.66°C compared with the controller-only Ridge model. This sensor ablation gives a concrete engineering justification for using the stator thermocouples.
+| Metric | Result |
+|---|---:|
+| MAE | 5.60°C |
+| RMSE | 7.36°C |
+| R² | 0.856 |
+| Predictions within ±5°C | 54.4% |
+| Mean bias | -0.34°C |
 
-The selected model still has an RMSE of 6.41°C, so it should be treated as an estimator rather than a safety cutoff. Later evaluation will inspect profile-level errors, residual patterns, and feature contributions before the interface is finalized.
+These final figures are less favorable than the validation figures, which is expected when operating conditions differ between profiles. Profile 45 has the largest MAE at 8.90°C. Profile 11 has a positive bias of 5.42°C and a negative R², which shows that performance is not consistent across every driving cycle.
+
+## Feature influence
+
+Permutation importance measures the increase in MAE after shuffling one feature in a 20,000-row test sample. Stator-tooth temperature has the largest measured effect, followed by stator-yoke and stator-winding temperature. This supports the enhanced sensor set, but correlated thermal sensors can share or redistribute importance, so the ranking is not a causal claim.
+
+| Feature | MAE increase after permutation |
+|---|---:|
+| Stator tooth temperature | 13.25°C |
+| Stator yoke temperature | 7.22°C |
+| Stator winding temperature | 2.30°C |
+| Coolant and ambient difference | 1.93°C |
+| Ambient temperature | 1.46°C |
+
+## Interpretation and limits
+
+The residual plot contains profile-specific bands rather than a uniform cloud. The static model does not explicitly represent thermal history, even though rotor temperature changes gradually over time. It is suitable for a course demonstration and comparative experiment, but it should not control a motor or replace a certified protection system.
 
 ## Reproduce
 
@@ -39,4 +65,4 @@ python scripts/analyze_dataset.py
 python scripts/train_models.py
 ```
 
-Generated figures, metrics, and the serialized model are kept out of Git and can be reproduced using these commands.
+The commands regenerate the metrics, per-profile table, permutation importance table, diagnostic figure, and serialized model artifact.
