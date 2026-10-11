@@ -7,6 +7,7 @@ __pycache__/
 .mypy_cache/
 .coverage
 htmlcov/
+.sandbox-temp/
 
 # Environments and secrets
 .venv/
@@ -27,11 +28,7 @@ Thumbs.db
 # Local data and generated artifacts
 data/raw/
 data/processed/
-models/*.joblib
 models/*.pkl
-reports/figures/*.png
-reports/tables/*.csv
-reports/metrics/*.json
 
 # Workspace-only planning and scratch files
 outputs/

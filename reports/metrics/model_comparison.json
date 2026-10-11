@@ -1,0 +1,103 @@
+{
+  "split": {
+    "strategy": "profile-separated train, validation, and test sets",
+    "group_column": "profile_id",
+    "train_rows": 823864,
+    "validation_rows": 202559,
+    "test_rows": 304393,
+    "train_profiles": 44,
+    "validation_profiles": 11,
+    "test_profiles": 14,
+    "profile_overlap": 0
+  },
+  "validation_models": {
+    "controller__mean_baseline": {
+      "mae_celsius": 15.679123747556657,
+      "rmse_celsius": 19.186327997886178,
+      "r2": -0.013213082861121217,
+      "within_5c_percent": 19.862361089855302,
+      "bias_celsius": 2.19100591218354,
+      "feature_set": "controller",
+      "feature_count": 11,
+      "fit_seconds": 0.01
+    },
+    "controller__ridge": {
+      "mae_celsius": 10.457106719873016,
+      "rmse_celsius": 13.028046757174593,
+      "r2": 0.5328292141132376,
+      "within_5c_percent": 28.701267285087305,
+      "bias_celsius": 1.4339358593855809,
+      "feature_set": "controller",
+      "feature_count": 11,
+      "fit_seconds": 0.297
+    },
+    "controller__hist_gradient_boosting": {
+      "mae_celsius": 7.7521442116279795,
+      "rmse_celsius": 9.952299081782817,
+      "r2": 0.7273761183019007,
+      "within_5c_percent": 39.745950562552146,
+      "bias_celsius": 0.4628889018574525,
+      "feature_set": "controller",
+      "feature_count": 11,
+      "fit_seconds": 5.803
+    },
+    "controller__xgboost": {
+      "mae_celsius": 8.112909075846426,
+      "rmse_celsius": 10.573394027568149,
+      "r2": 0.6922869652303576,
+      "within_5c_percent": 39.50651415143242,
+      "bias_celsius": 0.6800590585866889,
+      "feature_set": "controller",
+      "feature_count": 11,
+      "fit_seconds": 15.79
+    },
+    "enhanced__mean_baseline": {
+      "mae_celsius": 15.679123747556657,
+      "rmse_celsius": 19.186327997886178,
+      "r2": -0.013213082861121217,
+      "within_5c_percent": 19.862361089855302,
+      "bias_celsius": 2.19100591218354,
+      "feature_set": "enhanced",
+      "feature_count": 14,
+      "fit_seconds": 0.008
+    },
+    "enhanced__ridge": {
+      "mae_celsius": 5.849318864449506,
+      "rmse_celsius": 7.095228206174477,
+      "r2": 0.8614361963800293,
+      "within_5c_percent": 46.62740238646518,
+      "bias_celsius": 1.7612619941058252,
+      "feature_set": "enhanced",
+      "feature_count": 14,
+      "fit_seconds": 0.32
+    },
+    "enhanced__hist_gradient_boosting": {
+      "mae_celsius": 4.60966871821996,
+      "rmse_celsius": 6.1145886417825235,
+      "r2": 0.897091428403497,
+      "within_5c_percent": 64.96378832833891,
+      "bias_celsius": 0.051489925282291446,
+      "feature_set": "enhanced",
+      "feature_count": 14,
+      "fit_seconds": 6.284
+    },
+    "enhanced__xgboost": {
+      "mae_celsius": 4.805793152538309,
+      "rmse_celsius": 6.419125291272439,
+      "r2": 0.8865854524326208,
+      "within_5c_percent": 65.20865525599947,
+      "bias_celsius": 0.11177255548344851,
+      "feature_set": "enhanced",
+      "feature_count": 14,
+      "fit_seconds": 16.119
+    }
+  },
+  "selected_model": "enhanced__hist_gradient_boosting",
+  "test_metrics": {
+    "mae_celsius": 5.596934374918079,
+    "rmse_celsius": 7.3605079671025395,
+    "r2": 0.855662121710914,
+    "within_5c_percent": 54.36064561274405,
+    "bias_celsius": -0.3432638256357588
+  }
+}
