@@ -170,7 +170,7 @@ Verification record:
 
 ## Section 8: submission report
 
-Status: pending final review.
+Status: complete on 11 October 2026.
 
 Planned contents:
 
@@ -196,6 +196,14 @@ Acceptance criteria:
 - The report explains why profile-aware splitting is necessary.
 - The difference between validation and final test performance is discussed honestly.
 - The document does not claim deployment readiness or causal feature effects.
+
+Verification record:
+
+- The report uses the generated dataset summary, validation comparison, final test metrics, profile diagnostics, and permutation importance results.
+- The Word document includes the workflow and all three generated analysis figures.
+- The document accessibility audit reports no findings.
+- All notebook code cells execute against the current repository without an error.
+- The notebook, report source, formatted report, and repository indexes are included in the final commit.
 
 ## Version-control routine
 

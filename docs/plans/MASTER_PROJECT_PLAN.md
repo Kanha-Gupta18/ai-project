@@ -75,7 +75,7 @@ The source file is `data/raw/measures_v2.csv`.
 | 5 | Final evaluation and explanation | Complete | Test metrics, profile errors, residual diagnostics, and permutation importance |
 | 6 | Prediction artifact and Streamlit application | Complete | Serialized pipeline, input contract, application, and tests |
 | 7 | Clean-environment verification | Complete | Python 3.14 isolated install, focused tests, lint, and application smoke check verified on 11 October 2026 |
-| 8 | Submission report | Pending final review | Report must use generated metrics and match the final repository |
+| 8 | Submission report | Complete | Executed notebook, report source, formatted Word report, and repository indexes verified on 11 October 2026 |
 
 The numbered sections are reviewed one at a time. Work moves to the next section after the current section has been demonstrated and approved.
 
@@ -126,4 +126,4 @@ The project is ready for submission when all of the following are true:
 
 ## Remaining handoff
 
-Section 7 is complete. The next work is Section 8: finalize and verify the submission report. No slide or viva work is planned in this repository.
+All eight implementation sections are complete. The repository now contains the working model, application, generated evidence, executed notebook, and final submission report. No slide or viva work is planned in this repository.
