@@ -4,6 +4,22 @@ AI for Engineers Project Submission Report
 
 11 October 2026
 
+Submitted by
+
+Kanha Gupta  1025220005
+
+Nilesh Kumar  1025220011
+
+Aaditya Agarwal  1025220010
+
+Batch 2V11
+
+Submitted to
+
+Dr. Arun Singh Pundir
+
+Thapar Institute of Engineering and Technology
+
 ## Abstract
 
 Permanent-magnet synchronous motors can lose efficiency or suffer thermal damage when internal components become too hot. Rotor temperature is difficult to measure directly in a working motor, so this project studies whether machine learning can estimate it from operating signals and nearby temperature sensors. ThermalGuard uses the Electric Motor Temperature dataset recorded on a test bench at Paderborn University. The dataset contains 1,330,816 measurements from 69 operating profiles.
