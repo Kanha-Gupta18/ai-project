@@ -23,6 +23,8 @@ def test_streamlit_app_predicts_with_generated_artifact():
 
     app = AppTest.from_file(PROJECT_ROOT / "app.py").run(timeout=30)
     assert not app.exception
+    assert app.title[0].value == "Estimate Rotor Temperature"
+    assert all(caption.value != "AI for Engineers" for caption in app.caption)
     assert len(app.number_input) == 11
     assert app.button[0].label == "Estimate temperature"
 

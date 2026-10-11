@@ -105,8 +105,7 @@ def main() -> None:
         unsafe_allow_html=True,
     )
 
-    st.caption("AI for Engineers")
-    st.title("Estimate rotor temperature")
+    st.title("Estimate Rotor Temperature")
     st.write("Enter one motor operating snapshot to estimate permanent-magnet temperature.")
 
     if not MODEL_PATH.is_file():
