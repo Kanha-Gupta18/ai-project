@@ -10,8 +10,7 @@ import pandas as pd
 import seaborn as sns
 from sklearn.inspection import permutation_importance
 
-from thermalguard.config import GROUP_COLUMN, TARGET_COLUMN
-from thermalguard.config import RANDOM_SEED
+from thermalguard.config import GROUP_COLUMN, RANDOM_SEED, TARGET_COLUMN
 from thermalguard.modeling import regression_metrics
 
 

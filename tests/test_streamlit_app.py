@@ -14,12 +14,14 @@ tempfile.tempdir = str(TEMPORARY_ROOT)
 import pytest
 from streamlit.testing.v1 import AppTest
 
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
 
 def test_streamlit_app_predicts_with_generated_artifact():
-    if not Path("models/thermalguard_model.joblib").exists():
+    if not (PROJECT_ROOT / "models" / "thermalguard_model.joblib").exists():
         pytest.skip("Train the model artifact before running the interface smoke test.")
 
-    app = AppTest.from_file("app.py").run(timeout=30)
+    app = AppTest.from_file(PROJECT_ROOT / "app.py").run(timeout=30)
     assert not app.exception
     assert len(app.number_input) == 11
     assert app.button[0].label == "Estimate temperature"

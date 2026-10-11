@@ -6,7 +6,6 @@ import json
 from pathlib import Path
 
 import matplotlib.pyplot as plt
-import pandas as pd
 import seaborn as sns
 
 from thermalguard.config import DEFAULT_DATA_PATH, GROUP_COLUMN, TARGET_COLUMN

@@ -10,8 +10,8 @@ from thermalguard.artifact import save_artifact
 from thermalguard.config import DEFAULT_DATA_PATH, GROUP_COLUMN, RAW_MODEL_INPUTS
 from thermalguard.data import load_dataset, split_by_profile
 from thermalguard.evaluation import (
-    prediction_table,
     permutation_importance_table,
+    prediction_table,
     profile_metrics,
     save_diagnostic_plots,
 )
