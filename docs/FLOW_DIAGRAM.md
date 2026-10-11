@@ -12,7 +12,7 @@ flowchart LR
     H --> I[Explain errors and feature influence]
     I --> J[Save pipeline and artifacts]
     J --> K[Run Streamlit demonstrator]
-    H --> L[Write submission report]
+    H --> L[Prepare notebook and presentation evidence]
 ```
 
 The split happens before preprocessing and model fitting. This order prevents measurements from the same operating session from appearing in both development and final test data.

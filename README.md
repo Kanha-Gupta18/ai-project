@@ -65,15 +65,13 @@ The application reads the saved model artifact and does not load the full datase
 
 ## Documentation
 
-- [Project plan](docs/PROJECT_PLAN.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [Data dictionary](docs/DATA_DICTIONARY.md)
 - [Workflow diagram](docs/FLOW_DIAGRAM.md)
 - [Model card](docs/MODEL_CARD.md)
 - [Verification record](docs/VERIFICATION.md)
 - [Executed project notebook](notebooks/ThermalGuard_Project.ipynb)
-- [Submission report source](reports/SUBMISSION_REPORT.md)
-- [Submission report Word document](reports/ThermalGuard_Submission_Report.docx)
+- [Experiment results](reports/RESULTS.md)
 
 ## Licence and data attribution
 

@@ -60,4 +60,4 @@ $env:PYTHONPATH = "src"
 .venv\Scripts\python.exe -m streamlit run app.py
 ```
 
-The rebuilt metrics, tables, figures, and model artifact are the reference outputs for the submission report.
+The rebuilt metrics, tables, figures, and model artifact are the reference outputs for the notebook and presentation.
